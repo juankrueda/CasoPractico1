@@ -1,12 +1,7 @@
-# This is a sample Python script.
-
-# Press Mayús+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
 
 def leerSentimientos(path,file):
     os.chdir(path)
-    #print(os.getcwd())
+    print(os.getcwd())
     sentimientos = open(file)
     valores = {}
     for  linea in sentimientos:
@@ -16,10 +11,10 @@ def leerSentimientos(path,file):
 
 def leerTweets(file):
     data = {}
-    import json
+    import numpy as np
     import pandas as pd
 
-    with open(file, 'r') as f:
+    with open("Tweets.txt", 'r') as f:
         for l in f.readlines():
             if not l.strip():  # skip empty lines
                 continue
@@ -29,16 +24,22 @@ def leerTweets(file):
 
 if __name__ == '__main__':
     import os
-    path = input("Ruta de la carpeta donde está el archivo de sentimientos:")
+    import json
+    path = input("Ruta de la carpeta donde están los archivos Input:")
     archivo=input("Nombre del archivo de sentimientos Con terminación.txt:")
     archivoTweets = input("Nombre del archivo de Tweets Con terminación.txt:")
     sentimientos = {}
     tweets = {}
     try:
-        sentimientos=leerSentimientos(archivo,path)
+        sentimientos=leerSentimientos(path,archivo)
+    except FileNotFoundError or OSError:
+        print("Ruta de sentimientos no válida")
+
+
+    try:
         tweets = leerTweets(archivoTweets)
     except FileNotFoundError or OSError:
-        print("Ruta no válida")
+        print("Ruta de Tweets no válida")
 
-
+    print (tweets.items())
 

@@ -11,8 +11,6 @@ def leerSentimientos(path,file):
 
 def leerTweets(file):
     data = {}
-    import numpy as np
-    import pandas as pd
 
     with open("Tweets.txt", 'r') as f:
         for l in f.readlines():
@@ -25,9 +23,12 @@ def leerTweets(file):
 if __name__ == '__main__':
     import os
     import json
-    path = input("Ruta de la carpeta donde están los archivos Input:")
-    archivo=input("Nombre del archivo de sentimientos Con terminación.txt:")
-    archivoTweets = input("Nombre del archivo de Tweets Con terminación.txt:")
+    #path = input("Ruta de la carpeta donde están los archivos Input:")
+    path = r"C:\Users\juanx\Downloads\CasoPractico"
+    #archivo=input("Nombre del archivo de sentimientos Con terminación.txt:")
+    archivo = "Sentimientos.txt"
+    #archivoTweets = input("Nombre del archivo de Tweets Con terminación.txt:")
+    archivoTweets = " Tweets.txt"
     sentimientos = {}
     tweets = {}
     try:
@@ -41,5 +42,5 @@ if __name__ == '__main__':
     except FileNotFoundError or OSError:
         print("Ruta de Tweets no válida")
 
-    print (tweets.items())
+    print (tweets)
 

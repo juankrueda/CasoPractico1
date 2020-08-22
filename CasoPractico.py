@@ -10,25 +10,31 @@ def leerSentimientos(path,file):
     return valores
 
 def leerTweets(file):
-    data = {}
+    Tweets = {}
+    with open(file, 'r',encoding=('UTF-8-sig')) as f:
+        Tweets = json.load(f)
+    return(Tweets)
 
-    with open("Tweets.txt", 'r') as f:
-        for l in f.readlines():
-            if not l.strip():  # skip empty lines
-                continue
+def calcularSentimiento(sentimientos,tweet):
+    valor = 0
+    texto = tweet.split(" ")
+    for i in texto:
+        if(sentimientos.get(i)):
+            valor = valor + int(sentimientos.get(i))
+    return valor
 
-            Tweets = json.loads(l)
-            return(Tweets)
+
 
 if __name__ == '__main__':
     import os
     import json
+    import pandas as pd
     #path = input("Ruta de la carpeta donde están los archivos Input:")
     path = r"C:\Users\juanx\Downloads\CasoPractico"
     #archivo=input("Nombre del archivo de sentimientos Con terminación.txt:")
     archivo = "Sentimientos.txt"
     #archivoTweets = input("Nombre del archivo de Tweets Con terminación.txt:")
-    archivoTweets = " Tweets.txt"
+    archivoTweets = "Tweets.txt"
     sentimientos = {}
     tweets = {}
     try:
@@ -36,11 +42,13 @@ if __name__ == '__main__':
     except FileNotFoundError or OSError:
         print("Ruta de sentimientos no válida")
 
+    valorSentimiento= (calcularSentimiento(sentimientos,"abandon abandoned"))
+    print(valorSentimiento)
 
-    try:
-        tweets = leerTweets(archivoTweets)
-    except FileNotFoundError or OSError:
-        print("Ruta de Tweets no válida")
+   # try:
+    #    tweets = leerTweets(archivoTweets)
+    #except FileNotFoundError or OSError:
+     #   print("Ruta de Tweets no válida")
 
-    print (tweets)
+    #print ((tweets.keys()))
 

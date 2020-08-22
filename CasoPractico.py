@@ -19,8 +19,9 @@ def calcularSentimiento(sentimientos,tweet):
     valor = 0
     texto = tweet.split(" ")
     for i in texto:
-        if(sentimientos.get(i)):
-            valor = valor + int(sentimientos.get(i))
+        if (not "http"in i and not "@:"in i):
+            if(sentimientos.get(i)):
+                valor = valor + int(sentimientos.get(i))
     return valor
 
 

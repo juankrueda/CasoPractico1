@@ -42,8 +42,14 @@ if __name__ == '__main__':
     except FileNotFoundError or OSError:
         print("Ruta de sentimientos no válida")
 
-    valorSentimiento= (calcularSentimiento(sentimientos,"abandon abandoned"))
-    print(valorSentimiento)
+    #valorSentimiento= (calcularSentimiento(sentimientos,"abandon abandoned papucho"))
+    #print(valorSentimiento)
+
+    with open(archivoTweets, 'r',encoding=('UTF-8-sig')) as f:
+        for i in f.readlines():
+            texto=json.loads(i)
+            if(texto.get("text")):
+                print(calcularSentimiento(sentimientos,texto.get("text").lower()))
 
    # try:
     #    tweets = leerTweets(archivoTweets)

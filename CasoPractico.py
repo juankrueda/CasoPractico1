@@ -12,7 +12,7 @@ def leerSentimientos(path,file):
     for  linea in sentimientos:
         termino,valor=linea.split("\t")
         valores[termino]=int(valor)
-    print(valores.items())
+    return(valores)
 
 
 
@@ -20,8 +20,9 @@ if __name__ == '__main__':
     import os
     path = input("Ruta de la carpeta donde está el archivo de sentimientos:")
     archivo=input("Nombre del archivo de sentimientos Con terminación.txt:")
+    sentimientos = {}
     try:
-        leerSentimientos(path,archivo)
-    except FileNotFoundError:
+        sentimientos=leerSentimientos(path,archivo)
+    except FileNotFoundError or OSError:
         print("Ruta no válida")
 
